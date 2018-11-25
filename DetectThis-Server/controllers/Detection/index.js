@@ -6,10 +6,7 @@ module.exports = {
             "requests":[
               {
                 "image":{
-                  "source":{
-                    "imageUri":
-                      req.body.imageUri
-                  }
+                  "content":req.file.buffer.toString('base64')
                 },
                 "features":[
                   {
@@ -20,7 +17,7 @@ module.exports = {
               }
             ]
         };
-
+        
         axios({
             method: 'POST',
             url: `https://vision.googleapis.com/v1/images:annotate?key=${process.env.GOOGLE_API_KEY}`,
