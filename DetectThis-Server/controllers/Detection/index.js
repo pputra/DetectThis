@@ -22,8 +22,13 @@ module.exports = {
             method: 'POST',
             url: `https://vision.googleapis.com/v1/images:annotate?key=${process.env.GOOGLE_API_KEY}`,
             data: data,
-        }).then((result) => {
-            res.status(200).json(result.data);
+        }).then(({ data }) => {
+            let [ { fullTextAnnotation: { text } } ] = data.responses;
+
+            res.status(201).json({
+                message: 'Text has been analyzed successfully',
+                data: text,
+            });
         }).catch((err) => {
             res.status(500).json(err.response.data);
         });
