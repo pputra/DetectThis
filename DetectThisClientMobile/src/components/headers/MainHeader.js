@@ -1,10 +1,10 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 
-export default MainHeader = ({ backgroundColor, headerTitle, color }) => {
+export default MainHeader = ({ backgroundColor, headerTitle, color, fontSize, fontStyle }) => {
   return (
     <View style={[styles.container, { backgroundColor }]}>
-        <Text style={[styles.text, { color }]}>{ headerTitle }</Text>
+        <Text style={[styles.text, { color, fontSize, fontStyle }]}>{ headerTitle }</Text>
     </View>
   )
 };
