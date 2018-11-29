@@ -2,7 +2,7 @@ import React from 'react'
 import {
   View,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
   Image,
   StyleSheet,
   Dimensions
@@ -11,7 +11,7 @@ import {
 export default OptionCard = ({ onPress, label, imageSource }) => {
   const { cardContainer, imageContainer, labelContainer, labelStyle } = styles
   return (
-    <TouchableHighlight onPress={ () => onPress()}>
+    <TouchableOpacity onPress={ () => onPress()}>
       <View style={ cardContainer }>
         {
           imageSource ? <Image source={ { uri: imageSource } } style={ imageContainer }/> : <View style={ imageContainer }/>
@@ -20,7 +20,7 @@ export default OptionCard = ({ onPress, label, imageSource }) => {
           <Text style={ labelStyle }>{ label }</Text>
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   )
 };
 
