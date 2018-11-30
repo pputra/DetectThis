@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 import styles from './styles';
+
+import detectObject from '../../store/actions/detectObject';
 
 import FlexContainer from '../../components/containers/Flex';
 import MainHeader from '../../components/headers/MainHeader';
 import OptionCard from '../../components/cards/option';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+  }
 
   test = (message) => {
     alert(message);
   }
 
   render() {
+    const { detectObject } = this.props
     const { menuContainer } = styles;
     const options = [
       {
         label: 'Text',
         imageSource: 'https://fsymbols.com/thumbs/95.png',
-        onPress: () => this.test('text')
+        onPress: () => detectObject('text')
       },
       {
         label: 'Brand',
@@ -26,13 +33,14 @@ export default class Dashboard extends Component {
         onPress: () => this.test('brand')
       },
       {
-        label: 'Random',
+        label: 'Object',
         imageSource: 'https://i.ebayimg.com/images/g/hG8AAOSwFNZWuxqH/s-l300.jpg',
-        onPress: () => this.test('random')
+        onPress: () => this.test('object')
       },
     ];
     return (
       <FlexContainer>
+        {this.props.loading ? <Text>loading</Text> : <Text>{this.props.detectionResult}</Text>}
         <MainHeader 
           headerTitle={ 'DetectThis' } 
           backgroundColor={ '#000000' }
@@ -54,3 +62,15 @@ export default class Dashboard extends Component {
     );
   }
 };
+
+const setStateToProps = (state) => ({
+  detectionResult: state.detectedObjectReducer.detectedObject,
+  loading: state.detectedObjectReducer.loading,
+  error: state.detectedObjectReducer.error,
+});
+
+const setDispatchToProps = (dispatch) => ({
+  detectObject: (type) => dispatch(detectObject(type))
+});
+
+export default connect( setStateToProps, setDispatchToProps)(Dashboard);

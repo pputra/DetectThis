@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import DetectedObjectReducer from './reducers/DetectedObjectReducer';
+import detectedObjectReducer from './reducers/detectedObjectReducer';
 
 
 const combinedReducers = combineReducers({
-  DetectedObjectReducer
+  detectedObjectReducer
 });
 
 const store = createStore(combinedReducers, applyMiddleware(thunk));
