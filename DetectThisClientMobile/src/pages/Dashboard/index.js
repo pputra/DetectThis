@@ -14,8 +14,8 @@ class Dashboard extends Component {
     super(props);
   }
 
-  test = (message) => {
-    alert(message);
+  test = () => {
+    this.props.navigation.navigate({routeName: 'Result'}); 
   }
 
   render() {
@@ -30,12 +30,12 @@ class Dashboard extends Component {
       {
         label: 'Brand',
         imageSource: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQExnL_dTvPpWmOab_B_3KIRd14KSMKtgCB0D_6dc1BOBTZnqQYiQ',
-        onPress: () => this.test('brand')
+        onPress: () => this.test()
       },
       {
         label: 'Object',
         imageSource: 'https://i.ebayimg.com/images/g/hG8AAOSwFNZWuxqH/s-l300.jpg',
-        onPress: () => this.test('object')
+        onPress: () => this.test()
       },
     ];
     return (
