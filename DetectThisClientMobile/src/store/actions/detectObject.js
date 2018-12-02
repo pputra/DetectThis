@@ -3,7 +3,7 @@ import ImagePicker from 'react-native-image-picker';
 
 import { port } from '../../config';
 
-export default (type) => {
+export default (type, navigateToResult) => {
   return (dispatch) => {
     
     const options = {
@@ -39,6 +39,8 @@ export default (type) => {
         dispatch({ 
           type: 'DETECT_OBJECT_LOADING', 
         });
+
+        navigateToResult();
 
         axios({
             method: 'POST',

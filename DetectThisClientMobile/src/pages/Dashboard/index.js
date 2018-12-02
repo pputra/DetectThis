@@ -19,13 +19,13 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { detectObject } = this.props
+    const { navigation, detectObject } = this.props
     const { menuContainer } = styles;
     const options = [
       {
         label: 'Text',
         imageSource: 'https://fsymbols.com/thumbs/95.png',
-        onPress: () => detectObject('text')
+        onPress: () => detectObject('text', () => navigation.navigate('Result', {detectionType: 'Text'}))
       },
       {
         label: 'Brand',
@@ -40,7 +40,6 @@ class Dashboard extends Component {
     ];
     return (
       <FlexContainer>
-        {this.props.loading ? <Text>loading</Text> : <Text>{this.props.detectionResult}</Text>}
         <MainHeader 
           headerTitle={ 'DetectThis' } 
           backgroundColor={ '#000000' }
@@ -70,7 +69,7 @@ const setStateToProps = (state) => ({
 });
 
 const setDispatchToProps = (dispatch) => ({
-  detectObject: (type) => dispatch(detectObject(type))
+  detectObject: (type, navigateToResult) => dispatch(detectObject(type, navigateToResult))
 });
 
 export default connect( setStateToProps, setDispatchToProps)(Dashboard);

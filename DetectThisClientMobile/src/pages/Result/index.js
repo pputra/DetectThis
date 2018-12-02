@@ -9,12 +9,23 @@ class Result extends Component {
   }
 
   render() {
+    const { loading, detectionResult, error } = this.props
     return (
       <View>
-        <Text>This is Result Page</Text>
+        {loading ? <Text>loading</Text> : <Text>{detectionResult}</Text>}
       </View>
     );
   }
 };
 
-export default Result;
+const setStateToProps = (state) => ({
+  detectionResult: state.detectedObjectReducer.detectedObject,
+  loading: state.detectedObjectReducer.loading,
+  error: state.detectedObjectReducer.error,
+});
+
+const setDispatchToProps = (dispatch) => ({
+  
+});
+
+export default connect(setStateToProps, setDispatchToProps)(Result);

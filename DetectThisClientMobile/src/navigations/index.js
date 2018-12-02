@@ -22,7 +22,10 @@ const StackNavigator = createStackNavigator({
   },
   Result: {
     screen: Result,
-    path: 'result'
+    path: 'result',
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.detectionType} Detection Result`
+    })
   },
 },);
 
