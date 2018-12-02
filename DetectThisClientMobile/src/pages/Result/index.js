@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { connect } from 'react-redux';
-import styles from './styles';
+
+import FlexContainer from '../../components/containers/Flex';
+import PaperContainer from '../../components/containers/Paper';
 
 class Result extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { loading, detectionResult, error } = this.props
     return (
-      <View>
-        {loading ? <Text>loading</Text> : <Text>{detectionResult}</Text>}
-      </View>
+      <FlexContainer>
+        {
+          loading ? 
+          <Text>loading</Text> : 
+          <PaperContainer textContent={ detectionResult }/>
+        }
+      </FlexContainer>
     );
   }
 };
