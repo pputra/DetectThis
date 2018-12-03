@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { generatePayload, hasEmptyResponse, appanedLabelResults } = require('../../helpers/gCloudVision');
+const { generatePayload, hasEmptyResponse, appendLabelResults } = require('../../helpers/gCloudVision');
 
 module.exports = {
     TextDetection: (req, res) => {
@@ -54,10 +54,10 @@ module.exports = {
             if (hasEmptyResponse(data)) {
                 return res.status(400).json({message: 'unable to detect the object'});
             }
-            
+
             res.status(201).json({
                 message: 'Object has been analyzed successfully',
-                data: appanedLabelResults(data),
+                data: appendLabelResults(data),
             });
         }).catch((err) => {
             res.status(500).json(err.response.data);

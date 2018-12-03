@@ -19,7 +19,7 @@ module.exports = {
     hasEmptyResponse: (data) => {
         return Object.keys(data.responses[0]).length === 0;
     },
-    appanedLabelResults: (data) => {
+    appendLabelResults: (data) => {
         let [{ labelAnnotations }] = data.responses;
         let result = [];
         labelAnnotations.forEach(label => {
