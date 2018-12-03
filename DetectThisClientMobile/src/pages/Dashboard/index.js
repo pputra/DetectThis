@@ -30,12 +30,12 @@ class Dashboard extends Component {
       {
         label: 'Brand',
         imageSource: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQExnL_dTvPpWmOab_B_3KIRd14KSMKtgCB0D_6dc1BOBTZnqQYiQ',
-        onPress: () => this.test()
+        onPress: () => detectObject('brand', () => navigation.navigate('Result', {detectionType: 'Brand'}))
       },
       {
         label: 'Object',
         imageSource: 'https://i.ebayimg.com/images/g/hG8AAOSwFNZWuxqH/s-l300.jpg',
-        onPress: () => this.test()
+        onPress: () => detectObject('object', () => navigation.navigate('Result', {detectionType: 'Object'}))
       },
     ];
     return (
