@@ -10,14 +10,6 @@ import MainHeader from '../../components/headers/MainHeader';
 import OptionCard from '../../components/cards/option';
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  test = () => {
-    this.props.navigation.navigate({routeName: 'Result'}); 
-  }
-
   render() {
     const { navigation, detectObject } = this.props
     const { menuContainer } = styles;
