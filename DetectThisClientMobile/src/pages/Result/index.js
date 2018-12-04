@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import styles from './styles';
 
@@ -8,7 +8,7 @@ import PaperContainer from '../../components/containers/Paper';
 import TextCard from '../../components/cards/text';
 
 class Result extends Component {
-  getComponentToRender = () => {
+  renderResult = () => {
     const { navigation, detectionResult } = this.props
     const { cardContainer } = styles
     const detectionType = navigation.getParam('detectionType');
@@ -36,14 +36,17 @@ class Result extends Component {
   
   render() {
     const { loading } = this.props
-    let componentToRender = this.getComponentToRender;
+    const { cardContainer } = styles
     
     return (
       <FlexContainer>
         {
           loading ? 
-          <Text>loading</Text> : 
-          componentToRender()
+          <View style={ cardContainer }>
+            <ActivityIndicator size={'large'}/>
+          </View>
+          : 
+          this.renderResult()
         }
       </FlexContainer>
     );
